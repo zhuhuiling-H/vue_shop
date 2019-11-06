@@ -6,10 +6,15 @@ import './plugins/element.js'
 import './assets/css/global.css'
 // 字体图标库
 import './assets/fonts/iconfont.css'
-// 导入axios以发送ajax请求
+// 默认打开地址
 import axios from 'axios'
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/';
-// 挂载axios
+// axios请求拦截器
+axios.interceptors.request.use(config => {
+        config.headers.Authorization = window.sessionStorage.getItem("token");
+        return config
+    })
+    // 挂载axios
 Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
