@@ -266,7 +266,7 @@ export default {
            this.getUserList()
          })
         },
-        // 删除用户
+        // 根据id删除用户
         async removeUserById(id){
             console.log(id)
           const confirmResult = await this.$confirm('请问是否要永久删除该用户','删除提示',{
