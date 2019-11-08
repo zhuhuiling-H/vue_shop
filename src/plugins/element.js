@@ -21,28 +21,31 @@ import {
     TableColumn,
     Switch,
     Pagination,
-    Dialog
+    Dialog,
+    MessageBox
 } from 'element-ui'
 
-Vue.use(Button)
-Vue.use(Form)
-Vue.use(FormItem)
-Vue.use(Container)
-Vue.use(Header)
-Vue.use(Aside)
-Vue.use(Main)
-Vue.use(Input)
-Vue.use(Menu)
-Vue.use(Submenu)
-Vue.use(MenuItem)
-Vue.use(Breadcrumb)
-Vue.use(BreadcrumbItem)
-Vue.use(Card)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(Switch)
-Vue.use(Pagination)
-Vue.use(Dialog)
+Vue
+    .use(Button)
+    .use(Form)
+    .use(FormItem)
+    .use(Container)
+    .use(Header)
+    .use(Aside)
+    .use(Main)
+    .use(Input)
+    .use(Menu)
+    .use(Submenu)
+    .use(MenuItem)
+    .use(Breadcrumb)
+    .use(BreadcrumbItem)
+    .use(Card)
+    .use(Row)
+    .use(Col)
+    .use(Table)
+    .use(TableColumn)
+    .use(Switch)
+    .use(Pagination)
+    .use(Dialog)
 Vue.prototype.$message = Message
+Vue.prototype.$confirm = MessageBox.confirm
