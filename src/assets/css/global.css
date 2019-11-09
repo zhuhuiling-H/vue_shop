@@ -7,4 +7,14 @@ body,
     height: 100%;
     margin: 0;
     padding: 0;
+    min-width: 1366px;
+}
+
+.el-breadcrumb {
+    padding-bottom: 15px;
+    font-size: 12px;
+}
+
+.el-table {
+    margin: 15px 0;
 }
