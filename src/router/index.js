@@ -6,6 +6,8 @@ import Welcome from '../components/Welcome.vue'
 import Users from '../components/user/Users.vue'
 import Rights from '../components/power/Rights.vue'
 import Roles from '../components/power/Roles.vue'
+import Cate from '../components/goods/categories.vue'
+import Params from '../components/goods/params.vue'
 
 Vue.use(Router)
 
@@ -32,6 +34,14 @@ const router = new Router({
                     {
                         path: '/roles',
                         component: Roles
+                    },
+                    {
+                        path: '/categories',
+                        component: Cate
+                    },
+                    {
+                        path: '/params',
+                        component: Params
                     }
                 ]
             }
@@ -39,11 +49,16 @@ const router = new Router({
     })
     // 路由导航守卫
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') next();
-    const tokenStr = window.sessionStorage.getItem('token');
-    if (!tokenStr)
-        return next('/login');
-    next();
-})
+        if (to.path === '/login') next();
+        const tokenStr = window.sessionStorage.getItem('token');
+        if (!tokenStr)
+            return next('/login');
+        next();
+    })
+    // 解决重复点击报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
 
 export default router;

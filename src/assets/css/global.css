@@ -16,5 +16,9 @@ body,
 }
 
 .el-table {
-    margin: 15px 0;
+    margin-top: 15px;
+}
+
+.el-pagination {
+    margin-top: 15px;
 }

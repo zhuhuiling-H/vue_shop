@@ -12,7 +12,7 @@
           <el-container>
             <el-aside :width="isCollapse ? '64px':'200px'">
               <div class="toggle-button" @click='toggleCollapse'>|||</div>
-              <el-menu background-color="#333744" text-color="#fff" active-text-color="#ffd04b" 
+              <el-menu background-color="#333744" text-color="#fff" active-text-color="#4091FF" 
               unique-opened :collapse="isCollapse" :collapse-transition="false" router
               :default-active='activePath'>
                 <!-- 一级菜单 -->
@@ -22,8 +22,7 @@
                       <span>{{item.authName}}</span>
                     </template>
                     <!-- 二级菜单 -->
-                      <el-menu-item :index="'/'+subItem.path"  v-for="subItem in item.children" :key="subItem.id"
-                      @click="saveNavState('/'+subItem.path)">
+                      <el-menu-item :index="'/'+subItem.path"  v-for="subItem in item.children" :key="subItem.id">
                          <template slot="title">
                             <i class="el-icon-menu"></i>
                             <span>{{subItem.authName}}</span>
@@ -58,7 +57,9 @@ export default {
   },
   created(){
     this.getMenuList()
-    this.activePath=window.sessionStorage.getItem('activePath')
+    // 二级菜单高亮显示
+    // this.activePath=window.sessionStorage.getItem('activePath')
+    this.activePath=location.hash.slice(1);
   },
   methods: {
     // 退出功能
@@ -69,7 +70,7 @@ export default {
       // 发送请求获取左侧菜单数据
     async getMenuList(){
       const {data:res}=await this.$http.get('menus')
-       console.log(res)
+      //  console.log(res)
       if(res.meta.status!==200) {
          return this.$message.error(res.meta.msg);
       }
@@ -80,9 +81,15 @@ export default {
       this.isCollapse=!this.isCollapse
     },
     // 二级菜单高亮显示
-    saveNavState(path){
-      window.sessionStorage.setItem('activePath',path);
-      this.activePath=path;
+    // saveNavState(path){
+      // window.sessionStorage.setItem('activePath',path)
+    // }
+  },
+  // 通过监听路由让二级菜单高亮显示
+  watch:{
+    $route(to){
+      // console.log(to.path)
+      this.activePath=to.path
     }
   }
 }

@@ -20,7 +20,7 @@
         </el-row>
         <!-- 用户列表(表格)区域 -->
         <el-table :data="userList" border stripe>
-            <el-table-column type="index"></el-table-column>
+            <el-table-column type="index" :index='index'></el-table-column>
             <el-table-column label="姓名" prop="username"></el-table-column>
             <el-table-column label="邮箱" prop="email"></el-table-column>
             <el-table-column label="电话" prop="mobile"></el-table-column>
@@ -272,7 +272,7 @@ export default {
           this.$message.success("获取用户信息成功")
           this.editForm = res.data
           this.editDialogVisible = true
-          console.log(this.editForm)
+        //   console.log(this.editForm)
      },
         //重置添加用户表单
          editDialogClosed(){
@@ -335,6 +335,12 @@ export default {
             this.selectedRoleId = ''
             this.userInfo = {}
           }
+        },
+        // 表格序列
+        computed:{
+            index(){
+                return(this.queryInfo.pagenum-1)*(this.queryInfo.pagesize+1)+1;
+            }
         }
 }
 </script>
